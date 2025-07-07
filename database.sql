@@ -1,3 +1,10 @@
+mysql -u root -p 
+
+Host: sql12.freesqldatabase.com
+Database name: sql12788691
+Database user: sql12788691
+Port number: 3306
+
 -- Create the database
 CREATE DATABASE notesapp;
 USE notesapp;
