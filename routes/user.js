@@ -46,7 +46,7 @@ router.get('/verify/:id', (request, response) => {
 router.post('/signup', (request, response) => {
     const { firstName, lastName, email, password } = request.body
 
-    console.log(request.body)
+   // console.log(request.body)
 
     //encrypt the password
     const encryptedPassword = '' + crypto.SHA256(password)
