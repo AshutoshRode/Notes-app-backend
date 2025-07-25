@@ -12,7 +12,6 @@ function sendEmail(template, subject, email, replacements, callback) {
 
     let contents = '' + fs.readFileSync('./email_templates/' + template);
 
-    // replace placeholders in template (e.g., {{VERIFICATION_LINK}})
     for (const key in replacements) {
         const placeholder = `{{${key}}}`;
         contents = contents.replace(new RegExp(placeholder, 'g'), replacements[key]);
@@ -30,6 +29,4 @@ function sendEmail(template, subject, email, replacements, callback) {
     });
 }
 
-module.exports = {
-    sendEmail: sendEmail,
 };
