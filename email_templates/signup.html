@@ -4,14 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
-        crossorigin="anonymous"></script>
-
-    <title>SignUp</title>
-
+    <title>Verify Your Account</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         h3 {
             text-align: center;
@@ -27,12 +21,10 @@
             border-radius: 10px;
         }
 
-        /* .welcome-message{
-
-        } */
         .button-confirm {
             margin-top: 30px;
             margin-bottom: 30px;
+            text-align: center;
         }
 
         .copyright {
@@ -41,37 +33,23 @@
             margin-top: 20px;
         }
     </style>
-
 </head>
 
 <body>
     <div class="container">
         <h3>Welcome to NotesApp!</h3>
-
         <div class="message">
-
             <h5>Hey!!!</h5>
-            <div class="welcome-message">
-
-
-                You're one step away from accessing your <strong>NotesApp account!</strong> All you need to do is confirm your account
-                using the button below.
-                <div class="button-confirm">
-                    <button class="btn btn-primary">
-                        Confirm account
-                    </button>
-                </div>
-                <div>
-                    If you didn't sign up for NotesApp, just ignore and delete this message.
-                </div>
+            <p>You're one step away from accessing your <strong>NotesApp account!</strong> All you need to do is confirm your account using the button below.</p>
+            <div class="button-confirm">
+                <a href="{{VERIFICATION_LINK}}" class="btn btn-primary">Confirm Account</a>
             </div>
+            <p>If you didn't sign up for NotesApp, you can safely ignore this email.</p>
         </div>
         <div class="copyright">
             © 2025 AshutoshNotes
         </div>
-
     </div>
-
 </body>
 
 </html>
