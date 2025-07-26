@@ -1,20 +1,22 @@
-const nodemailer = require('nodemailer');
-const fs = require('fs');
+const nodemailer = require('nodemailer')
+const fs = require('fs')
 
 function sendEmail(template, subject, email, replacements, callback) {
+
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
             user: 'ashutoshmusic1999@gmail.com',
-            pass: 'ftpvvxbagyyuuonq',
-        },
-    });
+            pass: 'ftpvvxbagyyuuonq'
+        }
+    })
 
-    let contents = '' + fs.readFileSync('./email_templates/' + template);
+    let contents = '' + fs.readFileSync('./email_templates/' + template)
 
+    // Replace placeholders with actual values (e.g. {{VERIFICATION_LINK}})
     for (const key in replacements) {
-        const placeholder = `{{${key}}}`;
-        contents = contents.replace(new RegExp(placeholder, 'g'), replacements[key]);
+        const pattern = new RegExp(`{{\\s*${key}\\s*}}`, 'g')
+        contents = contents.replace(pattern, replacements[key])
     }
 
     const mailOptions = {
@@ -22,11 +24,13 @@ function sendEmail(template, subject, email, replacements, callback) {
         to: email,
         subject: subject,
         html: contents,
-    };
+    }
 
     transporter.sendMail(mailOptions, function (error, info) {
-        callback(error, info);
-    });
+        callback(error, info)
+    })
 }
 
-};
+module.exports = {
+    sendEmail: sendEmail,
+}
