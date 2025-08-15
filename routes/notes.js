@@ -1,4 +1,3 @@
-// Create router if not present
 const express = require('express');
 const router = express.Router();
 const db = require('../db');
@@ -6,7 +5,12 @@ const utils = require('../utils');
 
 // ✅ Get all notes for the logged-in user
 router.get('/', (request, response) => {
-    const statement = `SELECT id, title, contents FROM notes WHERE userId = ${request.id}`;
+    const statement = `
+        SELECT id, title, contents, created_at 
+        FROM notes 
+        WHERE userId = ${request.id}
+        ORDER BY created_at DESC
+    `;
     db.execute(statement, (error, data) => {
         response.send(utils.createResult(error, data));
     });
@@ -15,7 +19,10 @@ router.get('/', (request, response) => {
 // ✅ Add a note
 router.post('/', (request, response) => {
     const { title, contents } = request.body;
-    const statement = `INSERT INTO notes (title, contents, userId) VALUES ('${title}', '${contents}', ${request.id})`;
+    const statement = `
+        INSERT INTO notes (title, contents, userId) 
+        VALUES ('${title}', '${contents}', ${request.id})
+    `;
     db.execute(statement, (error, data) => {
         response.send(utils.createResult(error, data));
     });
@@ -25,7 +32,11 @@ router.post('/', (request, response) => {
 router.put('/:id', (request, response) => {
     const { id } = request.params;
     const { title, contents } = request.body;
-    const statement = `UPDATE notes SET title='${title}', contents='${contents}' WHERE id=${id} AND userId=${request.id}`;
+    const statement = `
+        UPDATE notes 
+        SET title='${title}', contents='${contents}' 
+        WHERE id=${id} AND userId=${request.id}
+    `;
     db.execute(statement, (error, data) => {
         response.send(utils.createResult(error, data));
     });
@@ -34,7 +45,10 @@ router.put('/:id', (request, response) => {
 // ✅ Delete a note
 router.delete('/:id', (request, response) => {
     const { id } = request.params;
-    const statement = `DELETE FROM notes WHERE id=${id} AND userId=${request.id}`;
+    const statement = `
+        DELETE FROM notes 
+        WHERE id=${id} AND userId=${request.id}
+    `;
     db.execute(statement, (error, data) => {
         response.send(utils.createResult(error, data));
     });
